@@ -21,6 +21,14 @@ export class HistoryService {
                 if (event.state.index === INDICES.PREV) {
                     this.browserBacked.next();
                 }
+
+
+                //
+
+                //
+
+                //
+
                 // Browser forward pushed
                 if (event.state.index === INDICES.NEXT) {
                     this.browserForwarded.next();
@@ -40,8 +48,8 @@ export class HistoryService {
               2. popstate fired, meaning that we modified the history, move it back/forward
         */
         if (this.isHistoryReset === false) {
-            history.replaceState({ index: INDICES.PREV }, '', window.location.href);
-            history.pushState({ index: INDICES.CURRENT }, '', window.location.href);
+            history.replaceState({index: INDICES.PREV}, '', window.location.href);
+            history.pushState({index: INDICES.CURRENT}, '', window.location.href);
             // REMOVED due to very low crossbrowserability
             // history.pushState({index: INDICES.NEXT}, "", this.$location.absUrl());
             // history.back();
