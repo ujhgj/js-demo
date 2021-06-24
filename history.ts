@@ -38,7 +38,7 @@ export class HistoryService {
             }
         });
     }
-
+}
     /* Replacing current state, pushing two forward, and going back
        results in [0 - previous] [1 - current] [2 - next] */
     private reset() {
