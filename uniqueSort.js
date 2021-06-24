@@ -8,14 +8,14 @@ var hasDuplicate;
 function sortOrder( a, b ) {
 
     // Flag for duplicate removal
-    if ( a === b ) {
+    if (a === b) {
         hasDuplicate = true;
         return 0;
     }
 
     // Sort on method existence if only one input has compareDocumentPosition
     var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
-    if ( compare ) {
+    if (compare) {
         return compare;
     }
 
@@ -24,22 +24,22 @@ function sortOrder( a, b ) {
     // IE sometimes throws a "Permission denied" error when strict-comparing
     // two documents; shallow comparisons work.
     // eslint-disable-next-line eqeqeq
-    compare = ( a.ownerDocument || a ) == ( b.ownerDocument || b ) ?
-        a.compareDocumentPosition( b ) :
+    compare = (a.ownerDocument || a) == (b.ownerDocument || b) ?
+        a.compareDocumentPosition(b) :
 
         // Otherwise we know they are disconnected
         1;
 
     // Disconnected nodes
-    if ( compare & 1 ) {
+    if (compare & 1) {
 
         // Choose the first element that is related to the document
         // Support: IE 11+
         // IE sometimes throws a "Permission denied" error when strict-comparing
         // two documents; shallow comparisons work.
         // eslint-disable-next-line eqeqeq
-        if ( a == document || a.ownerDocument == document &&
-            jQuery.contains( document, a ) ) {
+        if (a == document || a.ownerDocument == document &&
+            jQuery.contains(document, a)) {
             return -1;
         }
 
@@ -47,15 +47,15 @@ function sortOrder( a, b ) {
         // IE sometimes throws a "Permission denied" error when strict-comparing
         // two documents; shallow comparisons work.
         // eslint-disable-next-line eqeqeq
-        if ( b == document || b.ownerDocument == document &&
-            jQuery.contains( document, b ) ) {
+        if (b == document || b.ownerDocument == document &&
+            jQuery.contains(document, b)) {
             return 1;
         }
 
         // Maintain original order
         return 0;
     }
-
+}
     return compare & 4 ? -1 : 1;
 }
 
